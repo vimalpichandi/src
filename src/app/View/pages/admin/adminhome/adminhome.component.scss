@@ -1,0 +1,141 @@
+.error {
+  color: red;
+}
+
+.step-container {
+    position: relative;
+    min-height: 100px;
+    display: block;
+    margin-bottom: 2rem;
+  }
+  
+  .step-wizard {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+  }
+  
+  .step-wizard .progress {
+    position: absolute;
+    top: 23px;
+    height: 8px;
+    left: 0;
+    width: 100%;
+  }
+  
+  .step-wizard .progressbar {
+    position: absolute;
+    background-color: #5d5386;
+    height: 8px;
+    border: 0 none;
+    width: 0%;
+    transition: width 0.6s ease;
+  }
+  
+  .step-wizard ul {
+    position: absolute;
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .step-wizard li {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+  }
+  
+  .step-wizard li .step {
+    position: absolute;
+    display: inline-block;
+    font-size: 1.2rem;
+    line-height: 42px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 6px solid;
+    border-color: #5d5386;
+    background: #fff;
+    transition: background-color 0.6s ease, border-color 0.6s ease;
+  }
+  
+  .step-wizard li .title {
+    position: absolute;
+    width: 100%;
+    left: 28px;
+    padding-top: 60px;
+    color: rgba(52, 40, 104, 0.4);
+    transition: color 0.6s ease;
+  }
+  
+  .step-wizard .active .step {
+    color: #fff;
+    background-color: #5d5386;
+    border-color: #5d5386;
+  }
+  
+  .step-wizard .active .title {
+    color: #e76c90;
+    font-weight: 500;
+  }
+  
+  .step-wizard li > a {
+    display: block;
+    width: 100%;
+    color: #2c304d;
+    position: relative;
+    text-align: center;
+  }
+  
+  .step-wizard a:hover .step {
+    color: #fff;
+    background-color: #5d5386;
+  }
+  
+  .step-wizard a:hover .title {
+    color: #5d5386;
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    .step-wizard li {
+      width: 30%;
+    }
+  }
+  
+  @media only screen and (max-width: 578px) {
+    .step-wizard li {
+      width: 25%;
+    }
+  }
+
+  .styled-radio {
+    position: relative;
+    padding-left: 35px;
+    text-align: left;
+}
+.styled-radio label:before {
+  left: 0;
+  width: 20px;
+  height: 20px;
+  margin: -15px 0 0;
+  background: rgba(52, 40, 104, 0.1);
+  box-shadow: 0 0 1px #eee;
+}
+.styled-radio label:after {
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  margin: -10px 0 0;
+  opacity: 0;
+  background: #5d5386;
+  -webkit-transform: translate3d(-15px, 0, 0) scale(0.5);
+  transform: translate3d(-15px, 0, 0) scale(0.5);
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+.mt-15{
+margin-top: 15%;
+
+}

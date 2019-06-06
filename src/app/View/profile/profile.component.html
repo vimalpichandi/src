@@ -1,0 +1,183 @@
+<app-header></app-header>
+
+<div class="col-md-10 offset-md-1">
+    <span class="anchor" id="formChangePassword"></span>
+    <hr class="mb-5">
+    <!-- form card change password -->
+    <div class="card card-outline-secondary">
+       <div class="card-header">
+          <h3 class="mb-0">Profile</h3>
+       </div>
+       <div class="card-body">
+          <!-- <button class="btn btn-primary" style="margin: 0 2rem;" [routerLink]="backtohome()">Back</button> -->
+          <div class="rela-block ">
+             <div class="profile-pic" id="profile_pic">
+                 <!-- <img src="C:/Users/Vimal/Pictures/5.jpg"  *ngIf="!dataimg" alt="userimg" style="border-radius: 50%;width: 160px;
+                   height: 160px;">  -->
+                 <!-- <img src="{{dataimg}}" *ngIf="dataimg" alt="userimg" style="border-radius: 50%;width: 160px;
+                   height: 160px;">   -->
+               
+                <label for="file-input" *ngIf="enableEditbIcon">
+                <i for="file-input" class="fas fa-pen editbtn"></i>
+                </label>
+                <input id="file-input" *ngIf="enableEditbIcon" type="file"
+                accept="image/x-png, image/gif, image/jpeg" accept='images/*' (change)="fileUpload($event)" />
+             </div>
+             <p>test</p>
+             <div class="rela-block profile-name-container"><br><br>
+                <div class="rela-block user-name" id="user_name"> firstName
+                   lastName
+                </div>
+             </div>
+             <div>
+                <div class="widget-body">
+                   <ngb-tabset class="rela-block" (tabChange)="changeTab($event)">
+                      <ngb-tab class="floated profile-stat followers">
+                         <ng-template ngbTabTitle><b>My profile</b> </ng-template>
+                         <ng-template ngbTabContent>
+                            <form #prongForm="ngForm" name="proForm"
+                            (ngSubmit)="updateProfileDetails(prongForm.value)">
+                            <div>
+                               <div>
+                                  <div class="form-group row mb-3 fg">
+                                     <div class="col-xl-6 mb-3">
+                                        <label class="form-control-label">First Name<span
+                                           class="text-danger ml-2">*</span></label>
+                                        <!-- <input [value]="jhjg" class="form-control" type="text" [value]="v_fname"> -->
+                                        <input type="text" required id="firstName" name="firstName"
+                                        class="form-control" [(ngModel)]="profileDetails.firstName"
+                                        #firstName="ngModel">
+                                        <span *ngIf="firstName.touched && firstName.invalid"
+                                           class="error">
+                                        Please enter the First Name !
+                                        </span>
+                                     </div>
+                                     <div class="col-xl-6">
+                                        <label class="form-control-label">Last Name<span
+                                           class="text-danger ml-2">*</span></label>
+                                        <input class="form-control" required id="lastName"
+                                        name="lastName" type="text"
+                                        [(ngModel)]="profileDetails.lastName" #lastName="ngModel">
+                                        <span *ngIf="lastName.touched && lastName.invalid"
+                                           class="error">
+                                        Please enter the Last Name !
+                                        </span>
+                                     </div>
+                                  </div>
+                                  <div class="form-group row mb-5">
+                                     <div class="col-xl-6 mb-3">
+                                        <label class="form-control-label">Phone</label>
+                                        <div class="input-group">
+                                           <input class="form-control" OnlyNumber="true"
+                                           mask="(000) 000-0000" placeholder="Phone Number"
+                                           id="phone" name="phone" type="text"
+                                           [(ngModel)]="profileDetails.phone" #phone="ngModel">
+                                           <!-- <input class="form-control" placeholder="Phone Number"  type="text"  [(ngModel)]="profileDetails.phone"> -->
+                                        </div>
+                                     </div>
+                                     <div class="col-xl-6">
+                                        <label class="form-control-label">Email</label>
+                                        <input class="form-control" type="text" readonly
+                                        placeholder="email" id="email" name="email"
+                                        [(ngModel)]="profileDetails.email" #email="ngModel">
+                                     </div>
+                                     <!--  <div class="col-xl-6 mb-3">
+                                        <label class="form-control-label">Date of Birth</label>
+                                        <div class="input-group">
+                                          <input class="form-control" type="text" formControlName="dob" placeholder="DOB"  [(ngModel)]="profileDetails.dob">
+                                        </div>
+                                        </div> -->
+                                  </div>
+                                  <div class="form-group">
+                                     <button class="btn btn-primary savebtn" type="submit"
+                                        [disabled]="prongForm.invalid">Save</button>
+                                  </div>
+                               </div>
+                            </div>
+                            </form>
+                         </ng-template>
+                      </ngb-tab>
+                      <ngb-tab>
+                         <ng-template ngbTabTitle><b>Change Password</b> </ng-template>
+                         <ng-template ngbTabContent>
+                            <form #loginForm="ngForm" (ngSubmit)="dochangePassword(loginForm.value,loginForm)">
+                               <div ngModelGroup="passwords" #passwords="ngModelGroup" appCheckPassword>
+                                 <div class="form-group row mb-3">
+                                   <div class="col-xl-6 mb-3" style="margin: auto;">
+                                     <label class="form-control-label">Old Password<span class="text-danger ml-2">*</span></label>
+                                     <input name="oldPassword" type="password" (keyup)="onKey($event)" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,32}$"
+                                       id="input1" class="form-control" maxlength="30" [(ngModel)]="passwordDetails.oldpasswordmod"
+                                       #oldPassword="ngModel" required="true">
+                                     <div *ngIf="oldPassword.invalid && (oldPassword.dirty || oldPassword.touched)" class="alert text-danger">
+                                       <div [hidden]="!oldPassword.hasError('required')">Old Password is required</div>
+                                       <div [hidden]="!oldPassword.hasError('pattern')">Please enter the password according to the
+                                         requirement</div>
+                                     </div>
+                                     <span class="error-msg">
+                                       <i *ngIf="!passval3" class="fa fa-times reqf new">Must be <strong>8 to 32 characters long</strong></i>
+                                       <i *ngIf="!passval1" class="fa fa-times reqf new">Must have <strong>1 uppercase letter</strong></i>
+                                       <i *ngIf="!passval" class="fa fa-times reqf new">Must have <strong>1 lowercase letter </strong></i>
+                                       <i *ngIf="!passval2" class="fa fa-times reqf new">Must have <strong>1 number </strong></i>
+                                       <i *ngIf="!passval4" class="fa fa-times reqf new"> Must have <strong>1 special character like
+                                           (!@#$,etc.) </strong></i>
+                                     </span>
+                                   </div>
+                                 </div>
+                                 <div class="form-group row mb-3">
+                                   <div class="col-xl-6 mb-3" style="margin: auto;">
+                                     <label class="form-control-label">New Password<span class="text-danger ml-2">*</span></label>
+                                     <input name="newPassword" type="password" (keyup)="onKey1($event)" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,32}$"
+                                       class="form-control required" maxlength="30" [(ngModel)]="passwordDetails.newpasswordmod"
+                                       #newPassword="ngModel" required="true">
+                               
+                                     <div *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched)" class="alert text-danger">
+                                       <div [hidden]="!newPassword.hasError('required')">New Password is required</div>
+                                       <div [hidden]="!newPassword.hasError('pattern')">Please enter the password according to the
+                                         requirement</div>
+                                     </div>
+                                     <span class="error-msg">
+                                       <i *ngIf="!passkey3" class="fa fa-times reqf new">Must be <strong>8 to 32 characters long</strong></i>
+                                       <i *ngIf="!passkey1" class="fa fa-times reqf new">Must have <strong>1 uppercase letter</strong></i>
+                                       <i *ngIf="!passkey" class="fa fa-times reqf new">Must have <strong>1 lowercase letter </strong></i>
+                                       <i *ngIf="!passkey2" class="fa fa-times reqf new">Must have <strong>1 number </strong></i>
+                                       <i *ngIf="!passkey4" class="fa fa-times reqf new"> Must have <strong>1 special character like
+                                           (!@#$,etc.) </strong></i>
+                                     </span>
+                                   </div>
+                                 </div>
+                                 <div class="form-group row mb-3">
+                                   <div class="col-xl-6 mb-3" style="margin: auto;">
+                                     <label class="form-control-label">Confirm Password<span class="text-danger ml-2">*</span></label>
+                                     <input name="confirmPassword" type="password" (keyup)="onKey2($event)" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,32}$"
+                                       class="form-control required" maxlength="30" [(ngModel)]="passwordDetails.confirmPasswordmod"
+                                       #confirmPassword="ngModel" required="true">
+                                     <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert text-danger">
+                                       <div [hidden]="!confirmPassword.hasError('required')">Confirm Password is required</div>
+                                       <div [hidden]="!confirmPassword.hasError('pattern')">Please enter the password according to the
+                                         requirement</div>
+                                     </div>
+                                     <span class="error-msg">
+                                       <i *ngIf="!passlast3" class="fa fa-times reqf new">Must be <strong>8 to 32 characters long</strong></i>
+                                       <i *ngIf="!passlast1" class="fa fa-times reqf new">Must have <strong>1 uppercase letter</strong></i>
+                                       <i *ngIf="!passlast" class="fa fa-times reqf new">Must have <strong>1 lowercase letter </strong></i>
+                                       <i *ngIf="!passlast2" class="fa fa-times reqf new">Must have <strong>1 number </strong></i>
+                                       <i *ngIf="!passlast4" class="fa fa-times reqf new"> Must have <strong>1 special character like
+                                           (!@#$,etc.) </strong></i>
+                                     </span>
+                                   </div>
+                                 </div>
+                                 <div class="form-group">
+                                   <button class="btn btn-primary savebtn" type="submit" [disabled]="loginForm.invalid">Save</button>
+                                 </div>
+                               </div>
+                               </form> 
+                         </ng-template>
+                      </ngb-tab>
+                   </ngb-tabset>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <!-- /form card change password -->
+ </div>
