@@ -35,8 +35,11 @@ export class ApiService {
 
 
         post(path: string, body: Object = {}): Observable<any> {
-            return this.http.post(`${environment.api_url}${path}`, JSON.stringify(body),
-            { headers: this.setHeaders() }).map((res: Response) => res.json())
+            return this.http.post(
+            `${environment.api_url}${path}`,
+            JSON.stringify(body),
+            { headers: this.setHeaders() }
+            ).map((res: Response) => res.json())
             .catch(this.formatErrors)
         }
 
@@ -54,3 +57,4 @@ export class ApiService {
 
 
 }
+ 

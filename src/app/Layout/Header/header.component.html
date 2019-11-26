@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<!-- nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,27 +10,66 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/admin/home">admin</a>
-      </li>
-     
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" routerLink="/profile">Profile</a>
-          <a class="dropdown-item" routerLink="/resetpassword">Reset Password</a>
-          <a class="dropdown-item" routerLink="/changepassword">Change Password</a>
-          <a class="dropdown-item" routerLink="/forgotpassword">Forgotpassword</a>
-        </div>
+        <a class="nav-link" href="#">Link</a>
       </li>
       <li class="nav-item">
-        <a (click)="logout()" class="dropdown-item icon no-padding-bottom" style="cursor: pointer;">
-            Logout
-          </a>
-    </li>
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
-</nav>
+</nav-->
+
+<body>
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-white border-bottom">
+    <a class="navbar-brand p-2 text-dark" href="#">Offcanvas navbar</a>
+    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link text-dark" href="#">Dashboard <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Notifications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Switch account</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right ml-auto">
+        <li class="nav-item"><a href="#" class="nav-link notifications"><i class="la la-bell-o"></i><span
+              class="notifications">1</span></a></li>
+        <li class="nav-item"><a href="#" class="nav-link messages"><i class="la la-envelope-o"></i><span
+              class="notifications">10</span></a></li>
+        <li class="nav-item dropdown">
+          <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
+            <img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="avatar" alt="Avatar"> Paula
+            Wilson <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>
+            <li><a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a></li>
+            <li><a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></li>
+            <li class="divider dropdown-divider"></li>
+            <li><a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>

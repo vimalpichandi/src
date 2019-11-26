@@ -4,13 +4,12 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://192.168.5.241:8080/rc_onboard',
- img_url: 'http://192.168.5.241:8080/rc_onboard',
-  // api_url: 'http://192.168.5.200:5050/rc_onboard',
-  // img_url: 'http://192.168.5.200:5050/rc7',
-  imgsize: 1000000,
-  timelimit: 3000
+  api_url: 'http://208.40.251.191/rc7/',
+ // img_url: 'http://000.000.0.000:0000/xxx',
+ // imgsize: 0,
+ // timelimit: 
 };
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

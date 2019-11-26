@@ -1,231 +1,33 @@
-<app-header></app-header>
-<div class="mt-15">  
-    <button type="button" class="btn btn-danger" style="margin-left: 20px; margin-right: 20px;" data-toggle="modal"
-        (click)="setTab(1);closeForm('myaddform')" data-target="#modal-one" data-backdrop="static"
-        data-keyboard="false">New POPUP</button>
-    <div class="btn-group right" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" (click)="getDatamode($event, 'A')"
-            [ngClass]="{ focus: open=='A' }" value="a">All</button>
-        <button type="button" class="btn btn-primary" (click)="getDatamode($event, 'male')"
-            [ngClass]="{ focus: open=='M' }" value="h">Only
-            Male</button>
-        <button type="button" class="btn btn-primary" (click)="getDatamode($event, 'female')"
-            [ngClass]="{ focus: open=='F' }" value="p">Only
-            Female</button>
-    </div>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+      <br>
+    <form action="">
+      <div class="form-group">
+        <input type="text" id="name" class="form-control rounded-pill" required>
+        <label class="form-control-placeholder" for="name">Name</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="Location" class="form-control rounded-pill" required>
+        <label class="form-control-placeholder" for="name">Location</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="Building" class="form-control rounded-pill" required>
+        <label class="form-control-placeholder" for="name">Building:</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="Floor" class="form-control rounded-pill" required>
+        <label class="form-control-placeholder" for="name">Floor:</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="Area" class="form-control rounded-pill" required>
+        <label class="form-control-placeholder" for="name">Area Of Location:</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="Floor" class="form-control rounded-pill" required>
+        <label class="form-control-placeholder" for="name">Number Of Floor:</label>
+      </div>
+
+    </form>
+  </div>
+
 </div>
-
-
-
-
-
-
-<!-- Begin Large Modal -->
-<div id="modal-one" class="modal fade">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add New Client</h4>
-                <button type="button" class="close" data-dismiss="modal" #closeBtn>
-                    <span aria-hidden="true" (click)="closeForm(myaddform)">×</span>
-                    <span class="sr-only">close</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="rootwizard">
-                    <div class="step-container">
-                        <div class="step-wizard">
-                            <div class="progress">
-                                <div class="progressbar" style="width: 100%;"></div>
-                            </div>
-                            <ul class="nav nav-pills">
-                                <li>
-                                    <a (click)="setTab(1)" data-toggle="tab"
-                                        [ngClass]="{'active': tab==1, 'show': tab==1}">
-                                        <span class="step">1</span>
-                                        <span class="title">Step 1</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a [ngStyle]="{'cursor': myaddform.invalid ?  'not-allowed': 'pointer' }"
-                                        (click)="!myaddform.invalid && setTab(2)"
-                                        [ngClass]="{'active':  tab==2, 'show': tab==2}">
-                                        <span class="step">2</span>
-                                        <span class="title">Step 2</span>
-                                    </a>
-                                </li>
-                                <!-- [ngStyle]="{'color':item.trackActualEmptyEndDate ? '#cccccc' : 'rgb(0, 183, 255)' , 
-                                                          'cursor': item.trackActualEmptyEndDate ?  'not-allowed': 'pointer' }" -->
-                                <li>
-                                    <a [ngStyle]="{'cursor': myaddform.invalid || tab!=2 ?  'not-allowed': 'pointer' }"
-                                        (click)="!myaddform.invalid && setTab(3)"
-                                        [ngClass]="{'active': tab==3, 'show': tab==3}">
-                                        <span class="step">3</span>
-                                        <span class="title">Step 3</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <form #myaddform="ngForm" name="clientForm" (ngSubmit)="addclient(myaddform.value)">
-                        <div class="tab-content">
-                            <!-- TAB-1 -->
-                            <div class="tab-pane" [ngClass]="{'active': tab==1, 'show': tab==1}" *ngIf="tab==1">
-                                <div class="section-title mt-5 mb-5">
-                                    <h4>Step-1</h4>
-                                </div>
-                                <div class="row" style="margin-left: 10px;">
-                                    Step-1
-
-                                    <div class="col-xl-6 ">
-                                        <label class="form-control-label">Select<span
-                                                class="text-danger ml-2">*</span></label>
-                                        <div class="styled-radio">
-                                            <input required #lradio="ngModel" name="radio" id="male" type="radio"
-                                                [(ngModel)]="createUser.mode" value="M" #radio="ngModel" />
-                                            <label for="male">male</label>
-                                        </div>
-                                        <div class="styled-radio">
-                                            <input required #lradio="ngModel" name="radio" id="female" type="radio"
-                                                [(ngModel)]="createUser.mode" value="F"
-                                                (change)="createUser.bpcia=true" />
-                                            <label for="female">Female</label>
-                                        </div>
-                                        <span *ngIf="lradio.touched && lradio.invalid" class="error">
-                                            Please select option!
-                                        </span>
-                                    </div>
-                                    <div *ngIf="createUser.mode" class="col-xl-6 mb-3">
-                                        <label class="form-control-label">TXT UID<span class="text-danger ml-2">*</span>
-                                        </label>
-                                        <div class="input-group">
-                                            <input *ngIf="createUser.mode=='F'" class="form-control" required
-                                                #lcmsuid="ngModel" placeholder="enter female number" id="cmsuid"
-                                                name="cmsuid" [(ngModel)]="createUser.cmsuid" value="CMS UID "
-                                                type="text" OnlyNumber="true">
-
-                                            <input *ngIf="createUser.mode=='M'" class="form-control" required
-                                                #lcmsuid="ngModel" placeholder="enter male number" id="cmsuid"
-                                                name="cmsuid" [(ngModel)]="createUser.cmsuid" value="CMS UID "
-                                                type="text" OnlyNumber="true">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 mb-3">
-                                        <div *ngIf="createUser.mode=='F'" class="styled-checkbox">
-                                            <input name="checkbox" name="f" id="f" [(ngModel)]="createUser.f"
-                                                type="checkbox">
-                                            <label for="f">Female </label>
-                                        </div>
-
-                                        <div *ngIf="createUser.mode=='M'" class="styled-checkbox">
-                                            <input name="checkbox" name="Male" id="Male" [(ngModel)]="createUser.bpcia"
-                                                type="checkbox">
-                                            <label for="bpcia">Male</label>
-                                            <input name="checkbox" name="male" id="male" [(ngModel)]="createUser.male"
-                                                type="checkbox">
-                                            <label for="bpcia">Male2 </label>
-                                            <div class="styled-checkbox">
-                                                <input name="checkbox" id="male" name="male"
-                                                    [(ngModel)]="createUser.male" type="checkbox">
-                                                <label for="male">Male3</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-
-                                    <ul class="pager wizard text-right">
-                                        <li class="next d-inline-block">
-                                            <button [disabled]="myaddform.invalid"
-                                                (click)="setFormValue(myaddform.value);setTab(2)" href="#tab2"
-                                                disabled="!myform.form.valid" data-toggle="tab"
-                                                class="btn btn-gradient">Next</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- TAB-2 -->
-                            <div class="tab-pane" [ngClass]="{'active': tab==2, 'show': tab==2}" *ngIf="tab==2">
-                                <div class="section-title mt-5 mb-3">
-                                    <h4>Step-2</h4>
-                                </div>
-                                <div class="row" style="margin-left: 10px;">
-                                    <div class="form-group row mb-5">
-                                        <div class="col-xl-6 mb-3">
-                                            <label class="form-control-label">Phone<span
-                                                    class="text-danger ml-2">*</span></label>
-                                            
-                                                <input required placeholder="(000) 000-0000" class="form-control"
-                                                    #lphone="ngModel" id="phone" name="phone"
-                                                    [(ngModel)]="createUser.phone" type="text" mask="(000) 000-0000">
-                                                <span *ngIf="lphone.touched && lphone.invalid" class="error">
-                                                    Please enter the Phone number !
-                                                </span>
-                                            
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <label class="form-control-label">Email<span
-                                                    class="text-danger ml-2">*</span></label>
-                                            <input required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                                                placeholder="abd@abc.com" class="form-control" #lemail="ngModel"
-                                                id="email" name="email" [(ngModel)]="createUser.email" type="text">
-                                            <span *ngIf="lemail.touched && lemail.invalid" class="error"
-                                                style="color: red">
-                                                Please enter the email !
-                                            </span>
-                                            <span [hidden]="!lemail.hasError('pattern')" class="error">Email format
-                                                should be joe@abc.com
-
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-
-                                    <ul class="pager wizard text-right">
-
-                                        <li class="previous d-inline-block">
-                                            <a (click)="setTab(1)" href="#tab1" data-toggle="tab"
-                                                class="btn btn-secondary ripple">Previous</a>
-                                        </li>
-                                        <li class="next d-inline-block">
-                                            <button href="#tab3" [disabled]="myaddform.invalid"
-                                                (click)="setFormValue(myaddform.value);setTab(3)" data-toggle="tab"
-                                                class="btn btn-gradient-01">Next</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="tab-pane" [ngClass]="{'active': tab==3, 'show': tab==3}" *ngIf="tab==3">
-                                <div class="section-title mt-5 mb-3">
-                                    <h4>Step-3</h4>
-                                </div>
-
-                                <div class="row" style="margin-left: 10px;">
-                                    Step-3
-                                </div>
-
-                                <div class="modal-footer">
-                                    <a (click)="setTab(2)" href="#tab2" data-toggle="tab"
-                                        class="btn btn-secondary ripple">Previous</a>
-
-                                    <button type="button" (click)="closeForm(myaddform)" class="btn btn-shadow"
-                                        data-dismiss="modal">Close</button>
-                                    <input type="submit" value="Save" [disabled]="myaddform.invalid"
-                                        class="btn btn-gradient-01">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Large Modal -->

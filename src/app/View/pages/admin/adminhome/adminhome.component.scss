@@ -1,141 +1,104 @@
-.error {
-  color: red;
+ 
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+.rounded-pill {
+  border-radius: 50rem !important;
+  height: calc(2em + 1rem + 3px);
+  padding: 1rem 1.2rem;
+} 
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 12px 0 0 21px;
+  transition: all 200ms;
+  opacity: 0.5;
+}
+.form-control:focus{
+  border-color: #614092;
+  box-shadow:0 0 0 0.2rem rgba(0, 123, 255, 0)!important;
+}
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 90%;
+  transform: translate3d(0, -100%, 0);
+  opacity: 1;
+  font-weight: 600;
+  color: #7952B3;
+  
+} 
+
+
+
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25rem;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 0.625rem;
 }
 
-.step-container {
-    position: relative;
-    min-height: 100px;
-    display: block;
-    margin-bottom: 2rem;
-  }
-  
-  .step-wizard {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-  }
-  
-  .step-wizard .progress {
-    position: absolute;
-    top: 23px;
-    height: 8px;
-    left: 0;
-    width: 100%;
-  }
-  
-  .step-wizard .progressbar {
-    position: absolute;
-    background-color: #5d5386;
-    height: 8px;
-    border: 0 none;
-    width: 0%;
-    transition: width 0.6s ease;
-  }
-  
-  .step-wizard ul {
-    position: absolute;
-    width: 100%;
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .step-wizard li {
-    display: inline-block;
-    text-align: center;
-    width: 30%;
-  }
-  
-  .step-wizard li .step {
-    position: absolute;
-    display: inline-block;
-    font-size: 1.2rem;
-    line-height: 42px;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    border: 6px solid;
-    border-color: #5d5386;
-    background: #fff;
-    transition: background-color 0.6s ease, border-color 0.6s ease;
-  }
-  
-  .step-wizard li .title {
-    position: absolute;
-    width: 100%;
-    left: 28px;
-    padding-top: 60px;
-    color: rgba(52, 40, 104, 0.4);
-    transition: color 0.6s ease;
-  }
-  
-  .step-wizard .active .step {
-    color: #fff;
-    background-color: #5d5386;
-    border-color: #5d5386;
-  }
-  
-  .step-wizard .active .title {
-    color: #e76c90;
-    font-weight: 500;
-  }
-  
-  .step-wizard li > a {
-    display: block;
-    width: 100%;
-    color: #2c304d;
-    position: relative;
-    text-align: center;
-  }
-  
-  .step-wizard a:hover .step {
-    color: #fff;
-    background-color: #5d5386;
-  }
-  
-  .step-wizard a:hover .title {
-    color: #5d5386;
-  }
-  
-  @media only screen and (max-width: 1200px) {
-    .step-wizard li {
-      width: 30%;
-    }
-  }
-  
-  @media only screen and (max-width: 578px) {
-    .step-wizard li {
-      width: 25%;
-    }
-  }
-
-  .styled-radio {
-    position: relative;
-    padding-left: 35px;
-    text-align: left;
+.box h2 {
+  margin: 0 0 1.875rem;
+  padding: 0;
+  color: #fff;
+  text-align: center;
 }
-.styled-radio label:before {
+
+.box .inputBox {
+  position: relative;
+}
+
+.box .inputBox input {
+  width: 100%;
+  padding: 0.625rem 0;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.062rem;
+  margin-bottom: 1.875rem;
+  border: none;
+  border-bottom: 0.065rem solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.box .inputBox label {
+  position: absolute;
+  top: 0;
   left: 0;
-  width: 20px;
-  height: 20px;
-  margin: -15px 0 0;
-  background: rgba(52, 40, 104, 0.1);
-  box-shadow: 0 0 1px #eee;
+  padding: 0.625rem 0;
+  font-size: 1rem;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
 }
-.styled-radio label:after {
-  left: 5px;
-  width: 10px;
-  height: 10px;
-  margin: -10px 0 0;
-  opacity: 0;
-  background: #5d5386;
-  -webkit-transform: translate3d(-15px, 0, 0) scale(0.5);
-  transform: translate3d(-15px, 0, 0) scale(0.5);
-  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
-}
-.mt-15{
-margin-top: 15%;
 
+.box .inputBox input:focus ~ label,
+.box .inputBox input:valid ~ label,
+.box .inputBox input:not([value=""]) ~ label {
+  top: -1.125rem;
+  left: 0;
+  color: #03a9f4;
+  font-size: 0.75rem;
+}
+
+.box input[type="submit"] {
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: #03a9f4;
+ // padding: 0.625rem 1.25rem;
+  cursor: pointer;
+  border-radius: 0.312rem;
+  font-size: 1rem;
+}
+
+.box input[type="submit"]:hover {
+  background-color: #1cb1f5;
 }

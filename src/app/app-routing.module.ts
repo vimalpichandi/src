@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
+ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
+import { LayoutComponent } from './Layout/layout.component';
+
 import { LoginComponent } from './View/login/login.component';
-import { ChangepasswordComponent } from './View/changepassword/changepassword.component';
+import { PasswordComponent } from './View/password/password.component';
 import { ForgotpasswordComponent } from './View/forgotpassword/forgotpassword.component';
 import { RecoverpasswordComponent } from './View/recoverpassword/recoverpassword.component';
-import { ResetpasswordComponent } from './View/resetpassword/resetpassword.component';
 
-import { ProfileComponent } from './View/profile/profile.component';
 
 import { AdminhomeComponent } from './View/pages/admin/adminhome/adminhome.component';
 import { UserhomeComponent } from './View/pages/user/userhome/userhome.component';
@@ -17,28 +17,28 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent,
     data: { title: 'login' }
   },
-  { path: 'changepassword', component: ChangepasswordComponent,
+  { path: 'changepassword', component: PasswordComponent,
     data: { title: 'Change Password' }
   },
   { path: 'forgotpassword', component: ForgotpasswordComponent,
     data: { title: 'Forgot Password' }
   },
-  { path: 'recoverpassword', component: RecoverpasswordComponent,
-  data: { title: 'Recover Password' }
+  { path: 'admin',   component: LayoutComponent,
+        children:[
+		 
+			  { path: 'home', component: AdminhomeComponent,
+				data: { title: 'Admin Page' }
+			  },
+	    ]
   },
-  { path: 'resetpassword', component: ResetpasswordComponent,
-  data: { title: 'Reset Password' }
-  },
-  { path: 'profile', component: ProfileComponent,
-    data: { title: 'Profile Page' }
-  },
-  { path: 'admin/home', component: AdminhomeComponent,
-  data: { title: 'Admin Page' }
-  },
-  { path: 'user/home', component: UserhomeComponent,
-   data: { title: 'User Page' }
-  },
-  
+  { path: 'user',   component: LayoutComponent,
+        children:[
+		 
+			  { path: 'home', component: UserhomeComponent,
+				data: { title: 'User Page' }
+			  },
+	    ]
+  }, 
   { path: '**', redirectTo: 'login', },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
 ];

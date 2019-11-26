@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { ApiService } from './api.service';
-import { User } from '../models/user.model';
 import { JwtService } from './jwt.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Http, ResponseContentType } from '@angular/http';
-import { Client } from '../models/client.model';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-
+import { Client } from '../models/client.model';
+import { User } from '../models/user.model';
 @Injectable()
 export class UserService {
   user: User;
   forgetpassword: boolean;
-  profileTitle: string; 
+  profileTitle: string;
 
   constructor(private apiService: ApiService, private jwtService: JwtService, private http: Http) { }
 
@@ -22,14 +21,13 @@ export class UserService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-  clientMasterId:number =0;
+  userId: number = 0;
 
   private clientUserSubject = new BehaviorSubject<Client>(new Client());
   public clientUser = this.clientUserSubject.asObservable().distinctUntilChanged();
 
 
-  clearSession()
-  {
+  clearSession() {
     this.jwtService.destroyToken();
     this.jwtService.destroygetUserAccountId();
     this.currentUserSubject.next(new User());
@@ -44,23 +42,22 @@ export class UserService {
             if (data.item) {
               //this.user = data;
               this.setAuth(data);
-              console.log("+ : :::::"+this.setAuth(data))
+         //     console.log("Getsession :", this.setAuth(data))
             }
           },
-       );
+        );
     }
   }
 
   //Login Credentials
   attemptAuth(credentials): Observable<User> {
-   //alert("aaaaaa"+JSON.stringify(credentials));
     return this.apiService.post('/api/authsession', credentials)
       .map(
         data => {
           //this.user = data;
-           console.log("auth",data)
+       //   console.log("Login authsession :", data)
           this.setAuth(data);
-         // this.setdata(data.item.clientMasterId);
+        //  console.log("Set data :", this.setdata(data.item.clientMasterId));
           return data;
         }
 
@@ -72,7 +69,7 @@ export class UserService {
 
     this.jwtService.saveToken(user.item.token);
     this.jwtService.saveUserAccountId(user.item.userId);
-    
+
     // Set current user data into observable
     this.currentUserSubject.next(user);
     this.isAuthenticatedSubject.next(true);
@@ -84,8 +81,8 @@ export class UserService {
   }
   datacm: any;
 
-  getdata(CMId: any) {
-    return this.apiService.get(`/api/v1/client/getclientmasterbyid/${CMId}`)
+  getdata(userId: any) {
+    return this.apiService.get(`/api/v1/client/getuserbyid/${userId}`)
       .map(
         data => {
           if (data) {
@@ -96,9 +93,9 @@ export class UserService {
         })
   }
 
-  
-  setdata(CMId: any) {
-    return this.apiService.get(`/api/v1/client/getclientmasterbyid/${CMId}`)
+
+  setdata(userId: any) {
+    return this.apiService.get(`/api/v1/client/getuserbyid/${userId}`)
       .subscribe(
         data => {
           // data.clientData = this.clientmaster
@@ -107,48 +104,10 @@ export class UserService {
           return data;
         })
   }
- //Update New Password
- updateNewPassword(randomID:String,newPassword:String,confirmPassword:String) {
-   return this.apiService.post(`/api/updatenewpassword/${randomID}/${newPassword}/${confirmPassword}`);
- }
-  
- //Update Profile Details
- updateProfileDetails(clientMasterID:String,data){ 
-   return this.apiService.post(`/api/v1/client/updateProfileByUserAccount`, data);
- }
-  uploadUserProfileImage(userclientID:any, data) {
-   return this.apiService.post(`/api/v1/client/uploadImageByUserAccount?userAccountId=`+ userclientID, data);
-  } 
 
-/* ProfileP Passwrd */
-  updateProfilePassword(oldPassword:String, newPassword:String) {
-    return this.apiService.post(`/api/v1/client/updateProfilePasswordByUserAccount?oldPassword=${oldPassword}&newPassword=${newPassword}`, null);
-  } 
 
-//change password
-    userChangepassword(random,password,changepassword) { 
-      return this.apiService.post(`/api/updatenewpassword?randId=${random}&newPassword=${password}&confirmPassword=${changepassword}`);
-    }
-//reset password
-   usermailReset(email) {     
-     return this.apiService.post(`/api/resetpassword?email=${email}`);
-   }
 
-   getrandomeuserData(mode) {
 
-    return this.apiService.get("https://api.randomuser.me/?gender=" + mode)
-        .map(
-            res => {
-                return res;
-                // this.data$.next(res);
-            },
-            err => {
-                console.log('Error occured');
-            }
-        );
+
 
 }
-
-}
-
-
